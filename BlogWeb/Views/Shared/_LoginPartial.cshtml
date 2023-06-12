@@ -1,0 +1,60 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    var user = await UserManager.GetUserAsync(User);
+    <li>
+        @{
+            if (user.imgUser == null)
+            {
+                <a><img src="~/thumbnails/default_image.png" class="user-pic" onclick="toggleMenu()" /></a>
+            }
+
+            else
+            {
+                <a><img src="~/thumbnails/@user.imgUser" class="user-pic" onclick="toggleMenu()"></a>
+
+            }
+        }
+        
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <p>@user.FullName</p>
+                </div>
+                <hr>
+                <div href="#" class="sub-menu-link">
+                    <form id="editProfileForm" method="post" asp-controller="Account" asp-action="Edit">
+                        <button type="submit" class="nav-link" style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;">Edit profile</button>
+                    </form>
+                </div>
+                <div href="#" class="sub-menu-link">
+                    <form id="logoutForm" method="post" asp-controller="Account" asp-action="Logout">
+                        <button type="submit" class="nav-link" style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;">Log Out</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </li>
+}
+else
+{
+    <li><a href="/login">Singin</a></li>
+}
+
+
+<script>
+    let subMenu = document.getElementById("subMenu")
+
+    function toggleMenu() {
+        subMenu.classList.toggle("open-menu")
+    }
+
+</script>
+
+

@@ -1,0 +1,43 @@
+﻿@model BlogWeb.ViewModels.loginvm
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <div class="forms">
+        <div class="form login">
+            <span class="title">Login</span>
+            <form method="post">
+                <div class="input-field">
+                    <input asp-for="Username" type="text" placeholder="Enter your email" required>
+                    <i class="uil uil-envelope icon"></i>
+                </div>
+                <div class="input-field">
+                    <input asp-for="Password" type="password" class="password" placeholder="Enter your password" autocomplete="current-password" required>
+                    <i class="uil uil-lock icon"></i>
+                </div>
+                <div class="checkbox-text">
+                    <div class="checkbox-content">
+                        <input type="checkbox" id="logCheck" asp-for="RememberMe">
+                        @Html.DisplayNameFor(m => m.RememberMe)
+                    </div>
+                    <a href="#" class="text">Forgot password?</a>
+                </div>
+                <div class="btn-submit input-field button">
+                    <input type="submit" value="Signup">
+                </div>
+            </form>
+            <div class="login-signup">
+                <span class="text">
+                    Not a member?
+                    <a href="/Account/Register" class="text signup-link">Signup Now</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

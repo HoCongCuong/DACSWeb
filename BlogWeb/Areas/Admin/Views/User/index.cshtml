@@ -1,0 +1,37 @@
+﻿@model List<BlogWeb.ViewModels.Uservm>
+@{
+    ViewData["Title"] = "Users";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header bg-primary">
+            <h4 class="card-title text-white">List of Users</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-hover" id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>UserName</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var user in Model)
+                    {
+                        <tr>
+                            <td>@user.FullName</td>
+                            <td>@user.UserName</td>
+                            <td>@user.Role</td>
+                            <td>
+                                <a class="btn btn-info" asp-action="ResetPassword" asp-controller="User" asp-route-id="@user.Id">Reset Password</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

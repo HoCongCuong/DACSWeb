@@ -1,0 +1,80 @@
+﻿@model BlogWeb.ViewModels.Uservm
+
+<form form method="post" enctype="multipart/form-data">
+    <div class="container-xl px-4 mt-4">
+        <hr class="mt-0 mb-4">
+        <div class="row">
+            <div class="col-3">
+                <div class="mb-2">
+                    @{
+                        if (Model.imgUser == null)
+                        {
+                            <img src="~/thumbnails/default_image.png" class="img-fluid" id="thumbnail" />
+                        }
+
+                        else
+                        {
+                            <img src="~/thumbnails/@Model.imgUser" class="img-fluid" id="thumbnail" />
+
+                        }
+                    }
+                </div>
+                <div class="mb-2">
+                    <label>Thumbnail</label>
+                    <input type="file" asp-for="Thumbnail" class="custom-file" />
+                </div>
+            </div>
+
+            <div class="col-xl-8">
+                <!-- Account details card-->
+                <div class="card mb-4">
+                    <div class="card-header">Account Details</div>
+                    <div class="card-body">
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <label>Username</label>
+                            <input type="text" asp-for="UserName" class="form-control" disabled />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputEmail">Email</label>
+                            <input type="text" asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (full name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFullName">Full Name</label>
+                                <input type="text" asp-for="FullName" class="form-control" />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Phone number</label>
+                                <input type="text" asp-for="phone" class="form-control" />
+                                <span asp-validation-for="phone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <!-- Save changes button-->
+                        <button type="submit" class="btn btn-primary w-100">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(".custom-file").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+            document.getElementById('thumbnail').src = window.URL.createObjectURL(this.files[0])
+        });
+    </script>
+}

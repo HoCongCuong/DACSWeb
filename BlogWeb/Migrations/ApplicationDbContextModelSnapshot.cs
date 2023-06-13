@@ -40,8 +40,11 @@ namespace BlogWeb.Migrations
 
             modelBuilder.Entity("BlogWeb.Models.comment", b =>
                 {
-                    b.Property<int?>("postId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
@@ -52,11 +55,16 @@ namespace BlogWeb.Migrations
                     b.Property<string>("cmt")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("postId", "ApplicationUserId");
+                    b.Property<int?>("postId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("comments");
+                    b.HasIndex("postId");
+
+                    b.ToTable("comment", (string)null);
                 });
 
             modelBuilder.Entity("BlogWeb.Models.Page", b =>
@@ -377,15 +385,11 @@ namespace BlogWeb.Migrations
                 {
                     b.HasOne("BlogWeb.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("BlogWeb.Models.Post", "post")
                         .WithMany()
-                        .HasForeignKey("postId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("postId");
 
                     b.Navigation("ApplicationUser");
 

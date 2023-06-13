@@ -7,7 +7,7 @@ namespace BlogWeb.Models
     
     public class comment
     {
-
+        public int Id { get; set; }
         public Post? post { get; set; }
         public ApplicationUser? ApplicationUser { get; set; }   
         public int? postId { get; set; }

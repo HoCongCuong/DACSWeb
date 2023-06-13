@@ -1,0 +1,51 @@
+﻿@model BlogWeb.ViewModels.Homevm
+
+<section class="pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h3 class="mb-3">Bài Viết Mới </h3>
+            </div>
+
+            <div class="col-12">
+                <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                @{
+                                    var postCount = 0;
+                                }
+                                @foreach (var post in Model.Posts!)
+                                {
+                                    if (postCount < 3)
+                                    {
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card">
+                                                <img class="img-fluid" alt="100%x280" src="~/thumbnails/@post.ThumbnailUrl" height="162"
+                                                     width="345.87">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">
+                                                        <a asp-controller="Post" asp-action="detail" asp-route-slug="@post.Slug" class="h3">
+                                                            @post.Title
+                                                        </a>
+                                                    </h4>
+                                                    <p class="card-text">@post.ShortDescription.</p>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        postCount++;
+                                    }
+                                    
+                                }
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -30,8 +30,11 @@ namespace BlogWeb.Data
                 entity.HasIndex(e => e.CategoryId, "fk_category");
             });
 
-            builder.Entity<comment>()
-          .HasKey(m => new { m.postId, m.ApplicationUserId});
+            builder.Entity<comment>(entity =>
+            {
+                entity.ToTable("comment");
+            });
+            
 
             base.OnModelCreating(builder);
         }

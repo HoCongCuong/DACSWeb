@@ -400,6 +400,7 @@ body {
     background: #ffffff;
     padding: 15px;
     margin: 15px 0 30px;
+    width: 145%;
 }
 
     .article .article-title {
@@ -795,3 +796,24 @@ img {
             font-size: 15px;
             margin-right: 10px;
         }
+
+
+/*Header*/
+
+.section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+    .section .heading {
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+.clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

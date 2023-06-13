@@ -59,7 +59,7 @@ namespace BlogWeb.Controllers
         }
 
         
-        [HttpPost]
+        [HttpPost("[controller]/{slug}")]
         public async Task<IActionResult> detail(BlogPostvm vm)
         {
             if (!ModelState.IsValid)
@@ -76,7 +76,7 @@ namespace BlogWeb.Controllers
             await _context.comments!.AddAsync(cmts);
             await _context.SaveChangesAsync();
             _notification.Success("Comment Created Successfully");
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("index", "Home");
         }
 
     }

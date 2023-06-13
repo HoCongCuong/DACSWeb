@@ -37,6 +37,38 @@ namespace BlogWeb.Utilites
                 {
                     _userManager.AddToRoleAsync(appUser, WebsiteRoles.WebsiteAdmin).GetAwaiter().GetResult();
                 }
+
+                var listOfPages = new List<Models.Page>()
+                {
+                    new Models.Page()
+                    {
+                         Title = "About Us",
+                        Slug = "about"
+                    },
+                    new Models.Page()
+                    {
+                        Title = "Contact Us",
+                        Slug = "contact"
+                    },
+                    new Models.Page()
+                    {
+                        Title = "Privacy Policy",
+                        Slug = "privacy"
+                    }
+                 };
+
+                _context.Pages!.AddRange(listOfPages);
+
+                var setting = new Setting
+                {
+                    SiteName = "Site Name",
+                    Title = "Site Title",
+                    ShortDescription = "Short Description of site"
+                };
+
+                _context.Settings!.Add(setting);
+                _context.SaveChanges();
+
             }
         }
     }

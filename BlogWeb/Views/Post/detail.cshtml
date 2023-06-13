@@ -1,0 +1,62 @@
+﻿@model BlogWeb.ViewModels.BlogPostvm
+
+
+<div class="blog-single gray-bg">
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-lg-8 m-15px-tb">
+                <article class="article">
+                    <div class="article-img">
+                        @{
+                            string thumbnailUrl = "";
+                            if (Model.ThumbnailUrl == null)
+                            {
+                                <a><img src="~/thumbnails/default_image.png" class="thumbnails-pic" /></a>
+                            }
+                            else
+                            {
+                                <a><img src="~/thumbnails/@Model.ThumbnailUrl" class="thumbnails-pic"></a>
+                            }
+                        }
+                    </div>
+                    <div class="article-title">
+                        <h6><a href="#">@Model.CategoryName</a></h6>
+                        <h2>@Model.Title</h2>
+                        <div class="media">
+                            <div class="avatar">
+                                @{
+                                    string imgUser = "";
+                                    if (Model.imgUser == null)
+                                    {
+                                        <a><img src="~/thumbnails/default_image.png" /></a>
+                                    }
+                                    else
+                                    {
+                                        <a><img src="~/thumbnails/@Model.imgUser"></a>
+                                    }
+                                }
+                            </div>
+                            <div class="media-body">
+                                <label>@Model.AuthorName</label>
+                                <span>@Model.CreatedDate.ToShortDateString()</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-content">
+                        @Html.Raw(Model.Description)
+                    </div>
+                </article>
+            </div>
+            <div class="col-lg-4 m-15px-tb blog-aside">
+                <!-- Author -->
+                <!-- End Author -->
+                <!-- Trending Post -->
+                <!-- End Trending Post -->
+                <!-- Latest Post -->
+                <partial name="LastPost" />
+                <!-- widget Tags -->
+                <!-- End widget Tags -->
+            </div>
+        </div>
+    </div>
+</div>

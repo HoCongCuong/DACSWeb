@@ -19,6 +19,7 @@ namespace BlogWeb.Data
         public DbSet<Models.Page>? Pages { get; set; }
         public DbSet<Category>? Categorys { get; set; }
         public DbSet<comment>? comments { get; set; }
+        public DbSet<Setting>? Settings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

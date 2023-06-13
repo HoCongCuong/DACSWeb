@@ -1,0 +1,31 @@
+﻿@model BlogWeb.ViewModels.BlogPostvm
+
+<!-- Latest Post -->
+<div class="widget widget-latest-post">
+    <div class="widget-title">
+        <h3>Latest Post</h3>
+    </div>
+    <div class="widget-body">
+        <div class="latest-post-aside media">
+            <div class="lpa-left media-body">
+                <div class="lpa-title">
+                    <h5><a href="#">@Model.Title</a></h5>
+                </div>
+                <div class="lpa-meta">
+                    <a class="name" href="#">
+                        @Model.AuthorName
+                    </a>
+                    <a class="date" href="#">
+                        @Model.CreatedDate.ToShortDateString()
+                    </a>
+                </div>
+            </div>
+            <div class="lpa-right">
+                <a href="#">
+                    <img src="https://www.bootdey.com/image/400x200/FFB6C1/000000" title="" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Latest Post -->

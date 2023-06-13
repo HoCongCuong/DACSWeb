@@ -150,7 +150,7 @@ namespace BlogWeb.Areas.Admin.Controllers
                 Title = post.Title,
                 ShortDescription = post.ShortDescription,
                 Description = post.Description,
-                ThumbnailUrl = post.ThumbnailUrl,
+                ThumbnailUrl = post.ThumbnailUrl
 
             };
             vm.Categories = await _context.Categorys.ToListAsync();

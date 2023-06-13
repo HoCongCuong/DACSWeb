@@ -166,10 +166,10 @@ html {
 }
 
 .user-pic {
-    width: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    cursor: pointer;
-    margin-left: 30px;
+    overflow: hidden;
 }
 
 .nav-item ul {

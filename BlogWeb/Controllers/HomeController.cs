@@ -1,22 +1,42 @@
-﻿using BlogWeb.Models;
+﻿using BlogWeb.Data;
+using BlogWeb.Models;
+using BlogWeb.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using X.PagedList;
 
 namespace BlogWeb.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+                                ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int? page)
         {
-            return View();
+            var vm = new Homevm();
+            var posts = _context.Posts.ToList(); // Thay đổi tên biến setting thành posts
+            vm.Title = posts[0].Title;
+            vm.ShortDescription = posts[0].ShortDescription;
+            vm.ThumbnailUrl = posts[0].ThumbnailUrl;
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            vm.Posts = await _context.Posts.Include(x => x.ApplicationUser)
+                                           .Include(x => x.categorys)
+                                           .OrderByDescending(x => x.CreatedDate)
+                                           .ToPagedListAsync(pageNumber, pageSize);
+
+            return View(vm);
         }
+
 
         public IActionResult Privacy()
         {
@@ -27,10 +47,6 @@ namespace BlogWeb.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        public IActionResult profile() { 
-            return View();
         }
     }
 }

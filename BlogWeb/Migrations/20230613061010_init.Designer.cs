@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlogWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230612092404_init")]
+    [Migration("20230613061010_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -42,13 +42,11 @@ namespace BlogWeb.Migrations
 
             modelBuilder.Entity("BlogWeb.Models.comment", b =>
                 {
-                    b.Property<int?>("Id")
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                    b.Property<int?>("postId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(2);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -56,14 +54,9 @@ namespace BlogWeb.Migrations
                     b.Property<string>("cmt")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("postId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id", "ApplicationUserId");
+                    b.HasKey("postId", "ApplicationUserId");
 
                     b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("postId");
 
                     b.ToTable("comments");
                 });
@@ -392,7 +385,9 @@ namespace BlogWeb.Migrations
 
                     b.HasOne("BlogWeb.Models.Post", "post")
                         .WithMany()
-                        .HasForeignKey("postId");
+                        .HasForeignKey("postId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ApplicationUser");
 

@@ -15,6 +15,5 @@
         public Category? categorys { get; set; }
         public bool? published { get; set; }
         public int? CategoryId { get; set; }
-        public comment? comment { get; set; }
     }
 }

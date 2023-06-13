@@ -58,5 +58,25 @@
                 <!-- End widget Tags -->
             </div>
         </div>
+        <form asp-action="detail" asp-controller="Post" method="post">
+            <input asp-for="Content" type="hidden">
+            <div class="input-field">
+                <input asp-for="Content" type="text">
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="btn-submit input-field button">
+                <input type="submit">
+            </div>
+        </form>
     </div>
+    @if (Model.Comments != null && Model.Comments.Any())
+    {
+        <h3>Comments</h3>
+        <ul>
+            @foreach (var comment in Model.Comments)
+            {
+                <li>@comment.cmt</li>
+            }
+        </ul>
+    }
 </div>

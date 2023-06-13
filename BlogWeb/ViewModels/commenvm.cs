@@ -2,8 +2,10 @@
 {
     public class commenvm
     {
-        public string? UserName { get; set; }
+        public string? ApplicationUserId { get; set; }
         public string? Content { get; set; }
         public DateTime CreatedDate { get; set; }
+
+        public int? postId { get; set; }
     }
 }

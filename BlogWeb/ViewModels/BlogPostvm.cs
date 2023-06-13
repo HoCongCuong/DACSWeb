@@ -17,5 +17,9 @@ namespace BlogWeb.ViewModels
         public Post? Posts { get; set; }
         public List<comment>? Comments { get; set; }
 
+        public string? ApplicationUserId { get; set; }
+        public string? Content { get; set; }
+        public int? postId { get; set; }
+
     }
 }

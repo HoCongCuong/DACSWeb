@@ -8,16 +8,9 @@ namespace BlogWeb.Models
     public class comment
     {
 
-        
-        
-        public ApplicationUser? ApplicationUser { get; set; }
-
-        
-        [Column(Order = 1)]
-        public int? Id { get; set; }
         public Post? post { get; set; }
-        public int? PostId { get; set; }
-        [Column(Order = 2)]
+        public ApplicationUser? ApplicationUser { get; set; }   
+        public int? postId { get; set; }
         public string? ApplicationUserId { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string? cmt { get; set; }

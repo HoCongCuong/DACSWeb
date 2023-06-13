@@ -31,7 +31,7 @@ namespace BlogWeb.Data
             });
 
             builder.Entity<comment>()
-          .HasKey(m => new { m.Id, m.ApplicationUserId});
+          .HasKey(m => new { m.postId, m.ApplicationUserId});
 
             base.OnModelCreating(builder);
         }

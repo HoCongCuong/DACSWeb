@@ -28,8 +28,8 @@
                     <p>@user.FullName</p>
                 </div>
                 <hr>
-                <div href="#" class="sub-menu-link">
-                    <form id="editProfileForm" method="post" asp-controller="Account" asp-action="Edit">
+                <div class="sub-menu-link">
+                    <form id="editProfileForm" action="/Account/Edit" method="GET">
                         <button type="submit" class="nav-link" style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;">Edit profile</button>
                     </form>
                 </div>
